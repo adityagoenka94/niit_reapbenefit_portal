@@ -1,24 +1,26 @@
 import { Component, NgZone, ViewChild, ElementRef } from '@angular/core';
-import { DataService } from './services/data.service';
+import { DataService } from './../services/data.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CommonService } from './services/common.service';
-import { ward } from './services/wards';
+import { CommonService } from './../services/common.service';
+import { ward } from './../services/wards';
 import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
-import { GoogleAnalyticsService } from './services/google-analytics.service';
-import { UserDataService } from './services/user/user-data.service';
+import { GoogleAnalyticsService } from './../services/google-analytics.service';
+
 
 declare const google: any;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-app-copy',
+  templateUrl: './app-copy.component.html',
+  styleUrls: ['./app-copy.component.css']
 })
-export class AppComponent {
+
+
+export class AppCopyComponent {
 
   // @ViewChild('Governance') Governance: ElementRef;
 
@@ -120,13 +122,8 @@ export class AppComponent {
   public showComp = false;
   subscription: Subscription;
   subscriptionWithCord: Subscription;
-  displayName: string;
-  userRole: string[];
-  userData: any;
 
-  constructor(
-    private userService: UserDataService,
-    private dataService: DataService,
+  constructor(private dataService: DataService,
     private modalService: NgbModal,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
@@ -738,20 +735,6 @@ export class AppComponent {
   private CitiesList;
   ngOnInit() {
     // this.Wards = ward;
-    try {
-      this.userService.$userData.subscribe((userData) => {
-        console.log('userData : ', userData);
-        if (userData.data['first_name']) {
-          this.displayName = userData.data['first_name'];
-        } else {
-          this.displayName = userData.data['username'];
-        }
-        this.userRole = userData.data['userrole']['roles'];
-      });
-    } catch (e) {
-      console.log('Error while fetching user details from keycloak in Header Component. Error : ', e);
-    }
-
     this.Wards.sort(this.dynamicSort("name"));
     let obj = {
       "cityId": this.SelectedCity

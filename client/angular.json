@@ -24,8 +24,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/ngx-select-dropdown/dist/assets/style.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-select-dropdown/dist/assets/style.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Neighbourhood:build"
+            "browserTarget": "Neighbourhood:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

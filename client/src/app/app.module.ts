@@ -15,14 +15,18 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { CommonService } from './services/common.service';
 import { TreeviewModule } from 'ngx-treeview';
 import { GoogleAnalyticsService } from './services/google-analytics.service';
-import { environment } from './../environments/environment.prod'
+import { environment } from './../environments/environment.prod';
+import { HeaderComponent } from './header/header.component';
+import { AppCopyComponent } from './app-copy/app-copy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainContentComponent,
     MapsComponentComponent,
-    GraphsComponent
+    GraphsComponent,
+    HeaderComponent,
+    AppCopyComponent
   ],
   imports: [
     BrowserModule,
